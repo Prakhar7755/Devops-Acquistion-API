@@ -3,6 +3,16 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "imports": {
+    "#config/*": "./src/config/*",
+    "#controllers/*": "./src/controllers/*",
+    "#models/*": "./src/models/*",
+    "#middleware/*": "./src/middleware/*",
+    "#utils/*": "./src/utils/*",
+    "#services/*": "./src/services/*",
+    "#validations/*": "./src/validations/*",
+    "#routes/*": "./src/routes/*"
+  },
   "scripts": {
     "start": "node --watch  --trace-warnings src/index.js",
     "dev": "nodemon src/index.js",
@@ -19,9 +29,14 @@
   "type": "module",
   "dependencies": {
     "@neondatabase/serverless": "^1.1.0",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.6",
     "dotenv": "^17.4.2",
     "drizzle-orm": "^0.45.2",
-    "express": "^4.22.1"
+    "express": "^4.22.1",
+    "helmet": "^8.2.0",
+    "morgan": "^1.10.1",
+    "winston": "^3.19.0"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
