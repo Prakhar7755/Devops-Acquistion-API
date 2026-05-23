@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  neon-local:
+    image: neondatabase/neon_local:latest
+    ports:
+      - '5432:5432'
+    environment:
+      NEON_API_KEY: ${NEON_API_KEY}
+      NEON_PROJECT_ID: ${NEON_PROJECT_ID}
+      PARENT_BRANCH_ID: ${PARENT_BRANCH_ID:-main}
+      DELETE_BRANCH: ${DELETE_BRANCH:-true}
+    volumes:
+      - ./.neon_local/:/tmp/.neon_local
+    profiles: ['dev']

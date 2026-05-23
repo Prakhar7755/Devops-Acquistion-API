@@ -1,0 +1,44 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - '5000:5000'
+    environment:
+      NODE_ENV: development
+      PORT: 5000
+      LOG_LEVEL: info
+      DATABASE_URL: ${DATABASE_URL}
+    env_file:
+      - .env.development
+    volumes:
+      - ./src:/app/src
+      - ./drizzle:/app/drizzle
+      - ./drizzle.config.js:/app/drizzle.config.js
+      - ./logs:/app/logs
+    depends_on:
+      'neon-local':
+        condition: service_healthy
+    profiles: ['dev']
+
+  'neon-local':
+    image: neondatabase/neon_local:latest
+    ports:
+      - '5432:5432'
+    environment:
+      NEON_API_KEY: ${NEON_API_KEY}
+      NEON_PROJECT_ID: ${NEON_PROJECT_ID}
+      PARENT_BRANCH_ID: ${PARENT_BRANCH_ID:-main}
+      DELETE_BRANCH: ${DELETE_BRANCH:-true}
+    read_only: true
+    volumes:
+      - ./.neon_local/:/tmp/.neon_local
+      - ./.git/HEAD:/tmp/.git/HEAD:ro,consistent
+    security_opt:
+      - no-new-privileges:true
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -h 127.0.0.1 -p 5432 -U neon']
+      interval: 5s
+      timeout: 5s
+      retries: 10
