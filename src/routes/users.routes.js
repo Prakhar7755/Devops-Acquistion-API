@@ -1,7 +1,12 @@
 import express from 'express';
 import { authorize } from '#middleware/authorize.middleware.js';
 
-import { fetchAllUsers, fetchUserById, updateUserById, deleteUserById } from '#controllers/users.controller.js';
+import {
+  fetchAllUsers,
+  fetchUserById,
+  updateUserById,
+  deleteUserById,
+} from '#controllers/users.controller.js';
 
 const router = express.Router();
 

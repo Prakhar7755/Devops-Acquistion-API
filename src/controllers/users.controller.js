@@ -1,18 +1,21 @@
 import logger from '#config/logger.js';
-import { getAllUsers, getUserById, updateUser, deleteUser } from '#services/users.services.js';
+import {
+  getAllUsers,
+  getUserById,
+  updateUser,
+  deleteUser,
+} from '#services/users.services.js';
 
 export const fetchAllUsers = async (req, res, next) => {
   try {
     logger.info('Getting users...');
 
     const allUsers = await getAllUsers();
-    res
-      .status(200)
-      .json({
-        message: 'Successfully retrieved users',
-        users: allUsers,
-        count: allUsers.length,
-      });
+    res.status(200).json({
+      message: 'Successfully retrieved users',
+      users: allUsers,
+      count: allUsers.length,
+    });
   } catch (e) {
     logger.error(e);
     next(e);

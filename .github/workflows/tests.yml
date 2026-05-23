@@ -1,0 +1,60 @@
+name: Tests
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Test Suite
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:17-alpine
+        env:
+          POSTGRES_USER: neon
+          POSTGRES_PASSWORD: password
+          POSTGRES_DB: neondb
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U neon"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    env:
+      DATABASE_URL: postgresql://neon:password@localhost:5432/neondb?sslmode=disable
+      JWT_SECRET: test-jwt-secret
+      ARCJET_KEY: test-arcjet-key
+      ARCJET_ENV: test
+      LOG_LEVEL: error
+      NODE_ENV: test
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Wait for PostgreSQL
+        run: npx wait-on tcp:5432
+
+      - name: Run migrations
+        run: npm run db:migrate
+
+      - name: Run Jest tests
+        run: npm test

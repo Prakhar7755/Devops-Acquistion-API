@@ -21,7 +21,7 @@ export const getAllUsers = async () => {
   }
 };
 
-export const getUserById = async (id) => {
+export const getUserById = async id => {
   try {
     const user = await db
       .select({
@@ -73,7 +73,7 @@ export const updateUser = async (id, data) => {
   }
 };
 
-export const deleteUser = async (id) => {
+export const deleteUser = async id => {
   try {
     const deletedUser = await db
       .delete(users)
