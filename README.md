@@ -83,10 +83,10 @@ Production API is a backend service designed for enterprise applications requiri
    ```bash
    # Generate migrations (if needed)
    npm run db:generate
-   
+
    # Run migrations
    npm run db:migrate
-   
+
    # Optional: Seed initial data
    # npm run db:seed
    ```
@@ -235,26 +235,26 @@ curl -X GET http://localhost:3000/api/users \
 
 ### Authentication
 
-| Method | Endpoint           | Description          | Access     |
-|--------|--------------------|----------------------|------------|
-| POST   | `/api/auth/sign-up`| User registration    | Public     |
-| POST   | `/api/auth/sign-in`| User login           | Public     |
-| POST   | `/api/auth/sign-out`| User logout         | Authenticated |
+| Method | Endpoint             | Description       | Access        |
+| ------ | -------------------- | ----------------- | ------------- |
+| POST   | `/api/auth/sign-up`  | User registration | Public        |
+| POST   | `/api/auth/sign-in`  | User login        | Public        |
+| POST   | `/api/auth/sign-out` | User logout       | Authenticated |
 
 ### User Management (Example)
 
-| Method | Endpoint          | Description          | Access         |
-|--------|-------------------|----------------------|----------------|
-| GET    | `/api/users`      | List all users       | Admin only     |
-| GET    | `/api/users/:id`  | Get specific user    | User/Admin     |
-| PUT    | `/api/users/:id`  | Update user          | User/Admin     |
-| DELETE | `/api/users/:id`  | Delete user          | Admin only     |
+| Method | Endpoint         | Description       | Access     |
+| ------ | ---------------- | ----------------- | ---------- |
+| GET    | `/api/users`     | List all users    | Admin only |
+| GET    | `/api/users/:id` | Get specific user | User/Admin |
+| PUT    | `/api/users/:id` | Update user       | User/Admin |
+| DELETE | `/api/users/:id` | Delete user       | Admin only |
 
 ### Health Check
 
-| Method | Endpoint    | Description        | Access |
-|--------|-------------|--------------------|--------|
-| GET    | `/health`   | Service health     | Public |
+| Method | Endpoint  | Description    | Access |
+| ------ | --------- | -------------- | ------ |
+| GET    | `/health` | Service health | Public |
 
 ## Database Setup
 
@@ -352,7 +352,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ### Project Maintainer
 
-- **Name**: 
+- **Name**:
 - **Email**: <>
 - **GitHub**: []()
 
@@ -372,6 +372,6 @@ For enterprise support, custom features, or deployment assistance:
 
 ---
 
-*Last updated: May 22, 2026*  
-*Version: 1.0.0*  
-*© 2026 Production API Contributors. All rights reserved.*
+_Last updated: May 22, 2026_  
+_Version: 1.0.0_  
+_© 2026 Production API Contributors. All rights reserved._
