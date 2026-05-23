@@ -53,8 +53,8 @@ jobs:
       - name: Wait for PostgreSQL
         run: npx wait-on tcp:5432
 
-      - name: Run migrations
-        run: npm run db:migrate
+      # - name: Run migrations
+      #   run: npm run db:migrate
 
       - name: Run Jest tests
         run: npm test
