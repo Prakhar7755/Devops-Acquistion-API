@@ -14,8 +14,8 @@
     "#routes/*": "./src/routes/*"
   },
   "scripts": {
-    "start": "node --watch  --trace-warnings src/index.js",
-    "dev": "nodemon src/index.js",
+    "start": "node src/index.js",
+    "dev": "node --watch  --trace-warnings src/index.js",
     "build": "npm run build:dev:local",
     "build:dev:local": "docker compose --env-file .env.development -f docker-compose.dev.yml --profile dev build",
     "docker:dev": "docker compose --env-file .env.development -f docker-compose.dev.yml --profile dev up",

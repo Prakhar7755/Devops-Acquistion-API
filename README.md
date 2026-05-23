@@ -151,7 +151,7 @@ if (process.env.NODE_ENV === 'production') {
 // Development — PostgreSQL via pg driver (direct TCP to neon-local)
 else {
   const { Pool } = await import('pg');
-  const { drizzle } = await import('drizzle-orm/pg-core');
+  const { drizzle } = await import('drizzle-orm/node-postgres');
   const pool = new Pool({
     connectionString: process.env.DATABASE_URL,
     ssl: { rejectUnauthorized: false },

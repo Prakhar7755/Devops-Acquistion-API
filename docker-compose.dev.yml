@@ -31,7 +31,8 @@ services:
       NEON_PROJECT_ID: ${NEON_PROJECT_ID}
       PARENT_BRANCH_ID: ${PARENT_BRANCH_ID:-main}
       DELETE_BRANCH: ${DELETE_BRANCH:-true}
-    read_only: true
+    env_file:
+      - .env.development
     volumes:
       - ./.neon_local/:/tmp/.neon_local
       - ./.git/HEAD:/tmp/.git/HEAD:ro,consistent

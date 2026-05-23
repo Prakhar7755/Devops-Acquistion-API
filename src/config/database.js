@@ -11,7 +11,7 @@ if (process.env.NODE_ENV === 'production') {
   db = drizzle({ client: sql });
 } else {
   const { Pool } = await import('pg');
-  const { drizzle } = await import('drizzle-orm/pg-core');
+  const { drizzle } = await import('drizzle-orm/node-postgres');
 
   const pool = new Pool({
     connectionString: process.env.DATABASE_URL,
