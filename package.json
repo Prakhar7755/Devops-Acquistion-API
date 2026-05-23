@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "imports": {
+    "#src": "./src/*",
     "#config/*": "./src/config/*",
     "#controllers/*": "./src/controllers/*",
     "#models/*": "./src/models/*",
@@ -32,7 +33,8 @@
     "format": "prettier . --write",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
-    "db:studio": "drizzle-kit studio"
+    "db:studio": "drizzle-kit studio",
+    "test": "cross-env NODE_OPTIONS=--experimental-vm-modules jest"
   },
   "keywords": [],
   "author": "",
@@ -57,13 +59,16 @@
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
+    "cross-env": "^10.1.0",
     "drizzle-kit": "^0.31.10",
     "eslint": "^10.4.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.5",
     "globals": "^17.6.0",
+    "jest": "^30.4.2",
     "nodemon": "^3.1.14",
     "prettier": "^3.8.3",
+    "supertest": "^7.2.2",
     "tsx": "^4.22.3"
   }
 }
