@@ -43,3 +43,27 @@ export const createUser = async ({ name, email, password, role = 'user' }) => {
     throw e;
   }
 };
+
+export const findUserByEmail = async email => {
+  try {
+    const [user] = await db
+      .select()
+      .from(users)
+      .where(eq(users.email, email))
+      .limit(1);
+
+    return user;
+  } catch (e) {
+    logger.error('Error finding user by email: ' + e);
+    throw e;
+  }
+};
+
+export const validatePassword = async (plainPassword, hashedPassword) => {
+  try {
+    return await bcrypt.compare(plainPassword, hashedPassword);
+  } catch (e) {
+    logger.error('Error comparing password: ' + e);
+    throw e;
+  }
+};
